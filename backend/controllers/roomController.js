@@ -2,6 +2,12 @@ import asyncHandler from '../middleware/asyncHandler.js';
 import Room from '../models/roomModel.js';
 import Booking from '../models/bookingModel.js';
 
+<<<<<<< HEAD
+=======
+// @desc Fetch all rooms
+// @route GET /api/rooms
+// @access Public
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
 const getRooms = asyncHandler(async (req, res) => {
   const pageSize = 4;
   const page = Number(req.query.pageNumber) || 1;
@@ -14,6 +20,12 @@ const getRooms = asyncHandler(async (req, res) => {
   res.json({ rooms, page, pages: Math.ceil(count / pageSize) });
 });
 
+<<<<<<< HEAD
+=======
+// @desc Fetch single room
+// @route GET /api/rooms/:id
+// @access Public
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
 const getRoomById = asyncHandler(async (req, res) => {
   const room = await Room.findById(req.params.id);
 
@@ -25,6 +37,12 @@ const getRoomById = asyncHandler(async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
+=======
+// @desc Create a room
+// @route POST /api/rooms
+// @access Private/Admin
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
 const createRoom = asyncHandler(async (req, res) => {
   const room = new Room({
     name: 'Sample Room',
@@ -41,6 +59,12 @@ const createRoom = asyncHandler(async (req, res) => {
   res.status(201).json(createdRoom);
 });
 
+<<<<<<< HEAD
+=======
+// @desc Update a room
+// @route PUT /api/rooms/:id
+// @access Private/Admin
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
 const updateRoom = asyncHandler(async (req, res) => {
   const { name, price, description, image, roomType, availableRooms } = req.body;
 
@@ -62,6 +86,12 @@ const updateRoom = asyncHandler(async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
+=======
+// @desc Delete a room
+// @route DELETE /api/rooms/:id
+// @access Private/Admin
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
 const deleteRoom = asyncHandler(async (req, res) => {
   const room = await Room.findById(req.params.id);
 
@@ -74,6 +104,52 @@ const deleteRoom = asyncHandler(async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
+=======
+// @desc Create a room review
+// @route POST /api/rooms/:id/reviews
+// @access Private
+const createRoomReview = asyncHandler(async (req, res) => {
+  const { rating, comment } = req.body;
+
+  const room = await Room.findById(req.params.id);
+
+  if (room) {
+    const alreadyReviewed = room.reviews.find(
+      (review) => review.user.toString() === req.user._id.toString()
+    );
+
+    if (alreadyReviewed) {
+      res.status(400);
+      throw new Error('Room already reviewed');
+    }
+
+    const review = {
+      name: req.user.name,
+      rating: Number(rating),
+      comment,
+      user: req.user._id,
+    };
+
+    room.reviews.push(review);
+    room.numReviews = room.reviews.length;
+
+    room.rating =
+      room.reviews.reduce((acc, review) => acc + review.rating, 0) /
+      room.reviews.length;
+
+    await room.save();
+    res.status(201).json({ message: 'Review added' });
+  } else {
+    res.status(404);
+    throw new Error('Room not found');
+  }
+});
+
+// @desc Get available rooms
+// @route GET /api/rooms/available
+// @access Public
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
 const getAvailableRooms = asyncHandler(async (req, res) => {
   const { checkIn, checkOut, type } = req.query;
 
@@ -123,5 +199,9 @@ export {
   createRoom,
   updateRoom,
   deleteRoom,
+<<<<<<< HEAD
+=======
+  createRoomReview,
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
   getAvailableRooms,
 };

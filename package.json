@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
   "name": "hotelPisici",
   "version": "1.0.0",
   "description": "platforma online pentru rezervari",
+=======
+  "name": "proshop",
+  "version": "1.0.0",
+  "description": "eCommence app built with the MERN stack",
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
   "type": "module",
   "main": "server.js",
   "scripts": {

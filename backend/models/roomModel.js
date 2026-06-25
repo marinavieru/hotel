@@ -46,6 +46,20 @@ const roomSchema = new mongoose.Schema({
         required: true,
         enum: ["standard", "deluxe", "VIP"],
     },
+<<<<<<< HEAD
+=======
+    reviews: [reviewSchema], 
+    rating: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    numReviews: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
     price: {
         type: Number,
         required: true,

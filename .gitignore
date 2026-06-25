@@ -12,7 +12,11 @@ node_modules
 /build
 
 # misc
+<<<<<<< HEAD
 .DS_Store.gitignore "*.zip".gitignore "*.zip"
+=======
+.DS_Store
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
 .env
 .env.local
 .env.development.local

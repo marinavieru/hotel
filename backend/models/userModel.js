@@ -28,7 +28,11 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
 
+<<<<<<< HEAD
 userSchema.pre('save', async function (next) { 
+=======
+userSchema.pre('save', async function (next) { //pre allows us to do something before getting saved in the database
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
     if (!this.isModified('password')) {
         next();
     }

@@ -4,11 +4,19 @@ import multer from 'multer';
 const router = express.Router();
 
 const storage = multer.diskStorage({
+<<<<<<< HEAD
     destination(req, file, cb) { 
         cb(null, 'uploads/'); 
     },
     filename(req, file, cb) {
         cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`); 
+=======
+    destination(req, file, cb) { //cb is the callback
+        cb(null, 'uploads/'); //null is for error
+    },
+    filename(req, file, cb) {
+        cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`); //extname is the extenssion name of the original file
+>>>>>>> 24ad1938caec98c3a77ed78e2edb4c8800391ff4
     }
 });
 

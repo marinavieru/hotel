@@ -1,20 +1,20 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'; //we need the Mongo URI
+import dotenv from 'dotenv'; 
 import colors from 'colors';
 import users from './data/users.js';
 import products from './data/products.js';
-import User from './models/userModel.js'; //we are entering a user to the db
+import User from './models/userModel.js'; 
 import Product from './models/productModel.js'; 
-import Order from './models/orderModel.js'; //we can wipe everything including orders
-import connectDB from './config/db.js'; //we want to connect to our db
+import Order from './models/orderModel.js';
+import connectDB from './config/db.js'; 
 
-dotenv.config(); //initialise the dotenv so we can use the variables
+dotenv.config(); 
 
-connectDB(); //we want to connect to our db
+connectDB(); 
 
-const importData = async () => { // create this function 
+const importData = async () => {
     try {
-        await Order.deleteMany(); //deleteMany will delete multiple records
+        await Order.deleteMany(); 
         await Product.deleteMany();
         await User .deleteMany();
 
@@ -23,7 +23,7 @@ const importData = async () => { // create this function
         const adminUser = createdUsers[0]._id;
 
         const sampleProducts = products.map((product) => {
-            return { ...product, user: adminUser }; //... spread operator to add all the product data
+            return { ...product, user: adminUser }; 
         });
 
         await Product.insertMany(sampleProducts); 
